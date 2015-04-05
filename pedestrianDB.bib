@@ -1,0 +1,624 @@
+% This file was created with JabRef 2.10b2.
+% Encoding: UTF-8
+
+
+@InProceedings{Benenson2014,
+  Title                    = {Ten Years of Pedestrian Detection, What Have We Learned},
+  Author                   = {Rodrigo Benenson and Mohamed Omran and Jan Hosang and Bernt Schiele},
+  Year                     = {2014},
+
+  Abstract                 = {Paper-by-paper results make it easy to miss the forest for
+the trees.We analyse the remarkable progress of the last decade by dis-
+cussing the main ideas explored in the 40+ detectors currently present
+in the Caltech pedestrian detection benchmark. We observe that there
+exist three families of approaches, all currently reaching similar detec-
+tion quality. Based on our analysis, we study the complementarity of the
+most promising ideas by combining multiple published strategies. This
+new decision forest detector achieves the current best known performance
+on the challenging Caltech-USA dataset.
+},
+  Review                   = {Ten Years of Pedestrian Detection,
+What Have We Learned?
+
+Rodrigo Benenson Mohamed Omran Jan Hosang Bernt Schiele
+
+Max Planck Institut for Informatics
+Saarbrücken, Germany
+
+firstname.lastname@mpi-inf.mpg.de
+
+Abstract Paper-by-paper results make it easy to miss the forest for
+the trees.We analyse the remarkable progress of the last decade by dis-
+cussing the main ideas explored in the 40+ detectors currently present
+in the Caltech pedestrian detection benchmark. We observe that there
+exist three families of approaches, all currently reaching similar detec-
+tion quality. Based on our analysis, we study the complementarity of the
+most promising ideas by combining multiple published strategies. This
+new decision forest detector achieves the current best known performance
+on the challenging Caltech-USA dataset.
+
+1 Introduction 1.80 2004
+.64
+.50
+
+Pedestrian detection is a ca- .40
+.30
+
+nonical instance of object de- .20 Caltech-USA
+tection. Because of its direct reasonable set 2014
+applications in car safety, sur- .10
+veillance, and robotics, it has
+
+.05
+attracted much attention in −3 −2 −1 0 110 10 10 10 10
+
+false positives per image
+
+the last years. Importantly, it Figure 1: The last decade has shown tremendous
+is a well defined problem with progress on pedestrian detection. What have we
+established benchmarks and learned out of the 40+ proposed methods?
+evaluation metrics. As such, it
+has served as a playground to explore different ideas for object detection. The
+main paradigms for object detection “Viola&Jones variants”, HOG+SVM rigid
+templates, deformable part detectors (DPM), and convolutional neural networks
+(ConvNets) have all been explored for this task.
+
+The aim of this paper is to review progress over the last decade of pedestrian
+detection (40+ methods), identify the main ideas explored, and try to quantify
+which ideas had the most impact on final detection quality. In the next sections
+we review existing datasets (section 2), provide a discussion of the different ap-
+proaches (section 3), and experiments reproducing/quantifying the recent years’
+progress (section 4, presenting experiments over ∼ 20 newly trained detector
+models). Although we do not aim to introduce a novel technique, by putting
+together existing methods we report the best known detection results on the
+challenging Caltech-USA dataset.
+
+miss rate
+
+}
+}
+
+@InProceedings{Dollar,
+  Title                    = {Multiple Component Learning for Object Detection},
+  Author                   = {Piotr Dollar and 2 Boris Babenko2 Serge Belongie and 2 Pietro Perona1 Zhuowen Tu},
+
+  Abstract                 = {Object detection is one of the key problems in computer vi-
+sion. In the last decade, discriminative learning approaches have proven
+effective in detecting rigid objects, achieving very low false positives
+rates. The field has also seen a resurgence of part-based recognition
+methods, with impressive results on highly articulated, diverse object
+categories. In this paper we propose a discriminative learning approach
+for detection that is inspired by part-based recognition approaches. Our
+method, Multiple Component Learning (mcl), automatically learns indi-
+vidual component classifiers and combines these into an overall classifier.
+Unlike previous methods, which rely on either fairly restricted part mod-
+els or labeled part data, mcl learns powerful component classifiers in a
+weakly supervised manner, where object labels are provided but part la-
+bels are not. The basis of mcl lies in learning a set classifier; we achieve
+this by combining boosting with weakly supervised learning, specifically
+the Multiple Instance Learning framework (mil). mcl is general, and
+we demonstrate results on a range of data from computer audition and
+computer vision. In particular, mcl outperforms all existing methods on
+the challenging INRIA pedestrian detection dataset, and unlike methods
+that are not part-based, mcl is quite robust to occlusions.
+},
+  Review                   = {Multiple Component Learning
+for Object Detection
+
+Piotr Dolla´r1,2 Boris Babenko2 Serge Belongie1,2 Pietro Perona1 Zhuowen Tu3
+
+1 Electrical Engineering 2 Comp. Science & Eng. 3 Lab of Neuro Imaging
+California Inst. of Tech. Univ. of CA, San Diego Univ. of CA, Los Angeles
+{pdollar,perona}@caltech.edu {bbabenko,sjb}@cs.ucsd.edu zhuowen.tu@loni.ucla.edu
+
+Abstract. Object detection is one of the key problems in computer vi-
+sion. In the last decade, discriminative learning approaches have proven
+effective in detecting rigid objects, achieving very low false positives
+rates. The field has also seen a resurgence of part-based recognition
+methods, with impressive results on highly articulated, diverse object
+categories. In this paper we propose a discriminative learning approach
+for detection that is inspired by part-based recognition approaches. Our
+method, Multiple Component Learning (mcl), automatically learns indi-
+vidual component classifiers and combines these into an overall classifier.
+Unlike previous methods, which rely on either fairly restricted part mod-
+els or labeled part data, mcl learns powerful component classifiers in a
+weakly supervised manner, where object labels are provided but part la-
+bels are not. The basis of mcl lies in learning a set classifier; we achieve
+this by combining boosting with weakly supervised learning, specifically
+the Multiple Instance Learning framework (mil). mcl is general, and
+we demonstrate results on a range of data from computer audition and
+computer vision. In particular, mcl outperforms all existing methods on
+the challenging INRIA pedestrian detection dataset, and unlike methods
+that are not part-based, mcl is quite robust to occlusions.
+
+1 Introduction
+
+Computer vision has recently witnessed rapid development in the areas of cat-
+egory detection (detection and localization) and recognition (categorization).
+In detection, approaches that learn classifiers from simple low-level features
+and large amounts of data can achieve low false positive rates for quasi-rigid
+objects [1–3]. In recognition, part-based methods, particularly patches-as-parts
+approaches [4–6], have proven effective at differentiating highly articulated cat-
+egories. In this paper we propose a detection algorithm that is inspired by both
+lines of work. Through this combination, our system learns a robust, component-
+based classifier that achieves low false positive rates on articulated objects.
+
+Our approach is based on training a discriminative set classifier through a
+combination of boosting and weakly supervised learning, specifically Multiple
+Instance Learning (mil). The resulting method, Multiple Component Learning
+(mcl), learns individual component classifiers and combines these into an overall
+
+}
+}
+
+@InProceedings{Fastest2010,
+  Title                    = {The Fastest and Pedestrian Detector and in the West},
+  Author                   = {Piotr Dollar and Pietro Perona1},
+  Year                     = {2010},
+
+  Abstract                 = {},
+  Review                   = {DOLLÁR, et al.: THE FASTEST PEDESTRIAN DETECTOR IN THE WEST 1
+
+The Fastest Pedestrian Detector in the West
+Piotr Dollár1 1Dept. of Electrical Engineering
+pdollar@caltech.edu California Institute of Technology
+Serge Belongie2 Pasadena, CA, USA
+sjb@cs.ucsd.edu 2Dept. of Computer Science and Eng.
+Pietro Perona1 University of California, San Diego
+perona@caltech.edu San Diego, CA, USA
+
+Abstract
+
+We demonstrate a multiscale pedestrian detector operating in near real time (∼5 fps
+on 640x480 images) with state-of-the-art detection performance. The computational bot-
+tleneck of many modern detectors is the construction of an image pyramid, typically
+sampled at 8-16 scales per octave, and associated feature computations at each scale. We
+propose a technique to avoid constructing such a finely sampled image pyramid without
+sacrificing performance: our key insight is that for a broad family of features, includ-
+ing gradient histograms, the feature responses computed at a single scale can be used to
+approximate features responses at nearby scales. The approximation is accurate within
+an entire scale octave. This allows us to decouple the sampling of the image pyramid
+from the sampling of detection scales. Overall, our approximation yields a speedup of
+10-100 times over competing methods with only a minor loss in detection accuracy of
+about 1-3% on the Caltech Pedestrian dataset across a wide range of evaluation settings.
+The results are confirmed on three additional datasets (INRIA, ETH, and TUD-Brussels)
+where our method always scores within a few percent of the state-of-the-art while being
+1-2 orders of magnitude faster. The approach is general and should be widely applicable.
+
+1 Introduction
+Significant progress has been made in pedestrian detection in the last decade. While both de-
+tection and false alarm figures are still orders of magnitude away from human performance,
+and from the performance that is desirable for most applications, the rate of progress is excel-
+lent. False positive rates have gone down two orders of magnitude since the groundbreaking
+work of Viola and Jones (VJ) [28, 29]. At 80% detection rate on the INRIA pedestrian
+dataset [6], VJ outputs 10 false positives per image (fppi), HOG [6] outputs 1 fppi, and the
+most recent methods [7, 14], through a combination of richer features and more sophisticated
+learning techniques, output just .1 fppi (error rates as reported in [8]).
+
+The increase in detection accuracy has been paid for with increased computational costs.
+The VJ detector ran at roughly 15 frames per second (fps) on 384× 288 video nearly a
+decade ago, while the detectors recently evaluated on the Caltech Pedestrian dataset range
+in time from 2-30 seconds per frame on 640×480 video on modern hardware [8]. In many
+applications of pedestrian detection, including automotive safety, surveillance, robotics, and
+human machine interfaces, fast detection rates are of the essence.
+
+￿c 2010. The copyright of this document resides with its authors.
+It may be distributed unchanged freely in print or electronic forms.
+
+}
+}
+
+@InProceedings{Dollar,
+  Title                    = {Pedestrian Detection: A Benchmark},
+  Author                   = {Piotr Dollar and Christian Wojek and Bernt Schiele and Pietro Perona},
+
+  Abstract                 = {},
+  Review                   = {Pedestrian Detection: A Benchmark
+
+Piotr Dolla´r1 Christian Wojek2 Bernt Schiele2 Pietro Perona1
+
+1Dept. of Electrical Engineering 2Dept. of Computer Science
+California Institute of Technology TU Darmstadt
+{pdollar,perona}@caltech.edu {wojek,schiele}@cs.tu-darmstadt.de
+
+Abstract
+
+Pedestrian detection is a key problem in computer vision,
+with several applications including robotics, surveillance
+and automotive safety. Much of the progress of the past
+few years has been driven by the availability of challeng-
+ing public datasets. To continue the rapid rate of innova-
+tion, we introduce the Caltech Pedestrian Dataset, which
+is two orders of magnitude larger than existing datasets.
+The dataset contains richly annotated video, recorded from
+a moving vehicle, with challenging images of low resolu-
+tion and frequently occluded people. We propose improved Figure 1. Example images (cropped) and annotations. The solid green
+evaluation metrics, demonstrating that commonly used per- boxes denote the full pedestrian extent while the dashed yellow boxes de-
+
+note the visible regions. The Caltech Pedestrian Database, collected from
+window measures are flawed and can fail to predict perfor- a vehicle driving through regular traffic in an urban environment, consists
+mance on full images. We also benchmark several promis- of 350,000 labeled pedestrian bounding boxes in 250,000 frames.
+ing detection systems, providing an overview of state-of-the-
+art performance and a direct, unbiased comparison of ex- world performance (see Sec. 2.4). As we will demonstrate,
+isting methods. Finally, by analyzing common failure cases, the established methodology of evaluating pedestrian detec-
+we help identify future research directions for the field. tors, which uses per-window measures of performance, is
+
+flawed and can fail to predict actual per-image performance.
+1. Introduction Our contribution is fourfold. (1) We introduce the Cal-
+
+tech Pedestrian Dataset1, which is two orders of magni-
+Detecting people in images is a problem with a long his- tude larger than any existing dataset. The pedestrians vary
+
+tory [37, 13, 35, 27, 16, 41, 23, 5]; in the past two years widely in appearance, pose and scale; furthermore, occlu-
+there has been a surge of interest in pedestrian detection sion information is annotated (see Fig. 1). These statistics
+[6, 9, 11, 18, 20, 21, 25, 30, 32, 33, 36, 38, 42]. Accurate are more representative of real world applications and allow
+pedestrian detection would have immediate and far reaching for in depth analysis of existing algorithms. (2) We propose
+impact to applications such as surveillance, robotics, assis- improved performance metrics. (3) We benchmark seven
+tive technology for the visually impaired, content based in- algorithms [40, 5, 7, 30, 11, 42, 21], either obtained directly
+dexing (e.g. Flickr, Google, movies), advanced human ma- from the original authors or reimplemented in-house. (4)
+chine interfaces and automotive safety, among others. Auto- We highlight situations of practical interest under which ex-
+motive applications [12, 14, 34] are particularly compelling isting methods fail and identify future research directions.
+as they have the potential to save numerous lives [39]. We introduce the Caltech Pedestrian Dataset and de-
+
+Publicly available benchmarks, the most popular of scribe its statistics in Sec. 2. In Sec. 3, we discuss the
+which is the INRIA dataset [5], have contributed to spurring pitfalls of per-window metrics and describe our evaluation
+interest and progress in this area of machine vision. How- methodology, based on the PASCAL criteria [28]. In Sec.
+ever, as algorithm performance improves, more challenging 4 we report a detailed performance evaluation for seven
+datasets are necessary to continue the rapid pace of progress promising methods for pedestrian detection. We summarize
+and to inspire novel ideas. Existing pedestrian datasets of- our findings and discuss open problems in Sec. 5.
+ten contain a limited range of scale, occlusion and pose vari-
+ation, and are fairly small, making it difficult to assess real 1www.vision.caltech.edu/Image Datasets/CaltechPedestrians/
+
+1
+
+}
+}
+
+@InProceedings{Detection,
+  Title                    = {Pedestrian Detection and An Evaluation and of the State and of the Art},
+  Author                   = {Piotr Dollar and Christian Wojek and Bernt Schiele and Pietro Perona},
+  Year                     = {2012},
+  Publisher                = {IEEE},
+
+  Abstract                 = {Pedestrian detection is a key problem in computer vision, with several applications that have the potential to positively
+impact quality of life. In recent years, the number of approaches to detecting pedestrians in monocular images has grown steadily.
+However, multiple datasets and widely varying evaluation protocols are used, making direct comparisons difficult. To address these
+shortcomings, we perform an extensive evaluation of the state of the art in a unified framework. We make three primary contributions:
+(1) we put together a large, well-annotated and realistic monocular pedestrian detection dataset and study the statistics of the size,
+position and occlusion patterns of pedestrians in urban scenes, (2) we propose a refined per-frame evaluation methodology that allows
+us to carry out probing and informative comparisons, including measuring performance in relation to scale and occlusion, and (3) we
+evaluate the performance of sixteen pre-trained state-of-the-art detectors across six datasets. Our study allows us to assess the state
+of the art and provides a framework for gauging future efforts. Our experiments show that despite significant progress, performance
+still has much room for improvement. In particular, detection is disappointing at low resolutions and for partially occluded pedestrians.
+},
+  Review                   = {SUBMISSION TO IEEE TRANSACTIONS ON PATTERN ANALYSIS AND MACHINE INTELLIGENCE 1
+
+Pedestrian Detection:
+An Evaluation of the State of the Art
+
+Piotr Dolla´r, Christian Wojek, Bernt Schiele, and Pietro Perona
+
+Abstract—Pedestrian detection is a key problem in computer vision, with several applications that have the potential to positively
+impact quality of life. In recent years, the number of approaches to detecting pedestrians in monocular images has grown steadily.
+However, multiple datasets and widely varying evaluation protocols are used, making direct comparisons difficult. To address these
+shortcomings, we perform an extensive evaluation of the state of the art in a unified framework. We make three primary contributions:
+(1) we put together a large, well-annotated and realistic monocular pedestrian detection dataset and study the statistics of the size,
+position and occlusion patterns of pedestrians in urban scenes, (2) we propose a refined per-frame evaluation methodology that allows
+us to carry out probing and informative comparisons, including measuring performance in relation to scale and occlusion, and (3) we
+evaluate the performance of sixteen pre-trained state-of-the-art detectors across six datasets. Our study allows us to assess the state
+of the art and provides a framework for gauging future efforts. Our experiments show that despite significant progress, performance
+still has much room for improvement. In particular, detection is disappointing at low resolutions and for partially occluded pedestrians.
+
+Index Terms—pedestrian detection, object detection, benchmark, evaluation, dataset, Caltech Pedestrian Dataset
+
+F
+
+1 INTRODUCTION
+People are among the most important components of a
+machine’s environment, and endowing machines with
+the ability to interact with people is one of the most
+interesting and potentially useful challenges for modern
+engineering. Detecting and tracking people is thus an (a) Caltech [3] (b) Caltech-Japan [3]
+important area of research, and machine vision is bound
+to play a key role. Applications include robotics, enter-
+tainment, surveillance, care for the elderly and disabled,
+and content-based indexing. Just in the US, nearly 5,000
+of the 35,000 annual traffic crash fatalities involve pedes-
+trians [1], hence the considerable interest in building
+automated vision systems for detecting pedestrians [2]. (c) ETH [4] (d) TUD-Brussels [5]
+
+While there is much ongoing research in machine
+vision approaches for detecting pedestrians, varying
+evaluation protocols and use of different datasets makes
+direct comparisons difficult. Basic questions such as
+“Do current detectors work well?”, “What is the best
+approach?”, “What are the main failure modes?” and
+“What are the most productive research directions?” are
+
+(e) Daimler [6] (f) INRIA [7]
+not easily answered.
+
+Our study aims to address these questions. We fo- Fig. 1. Example images (cropped) and annotations from six
+cus on methods for detecting pedestrians in individual pedestrian detection datasets. We perform an extensive evalu-
+monocular images; for an overview of how detectors are ation of pedestrian detection, benchmarking sixteen detectors
+
+incorporated into full systems we refer readers to [2]. on each of these six datasets. By using multiple datasets anda unified evaluation framework we can draw broad conclusion
+Our approach is three-pronged: we collect, annotate and about the state of the art and suggest future research directions.
+study a large dataset of pedestrian images collected from
+a vehicle navigating in urban traffic; we develop infor-
+mative evaluation methodologies and point out pitfalls pare the performance of sixteen pre-trained pedestrian
+in previous experimental procedures; finally, we com- detectors on six publicly available datasets, including
+
+our own. Our study allows us to assess the state of the
+• P. Dolla´r and P. Perona are with the Department of Electrical Engineering, art and suggests directions for future research.
+
+California Institute of Technology, Pasadena, CA.
+All results of this study, and the data and tools for
+
+• C. Wojek and B. Schiele are with MPI Informatics, Saarbru¨cken, Germany. reproducing them, are posted on the project website:
+www.vision.caltech.edu/Image Datasets/CaltechPedestrians/ .
+
+}
+}
+
+@InProceedings{Gool1970,
+  Title                    = {A Mobile Vision System for Robust Multi-Person Tracking},
+  Author                   = {Andreas Ess1 Bastian Leibe1 Konrad Schindler1 Luc Van Gool},
+  Year                     = {1970},
+
+  Abstract                 = {mobile vision systems than can operate in unconstrained
+scenarios of daily human living. Building such systems
+},
+  Review                   = {A Mobile Vision System for Robust Multi-Person Tracking
+
+Andreas Ess1 Bastian Leibe1 Konrad Schindler1 Luc Van Gool1,2
+
+1ETH Zurich, Switzerland 2KU Leuven, Belgium
+
+{aess,leibe,konrads}@vision.ee.ethz.ch vangool@esat.kuleuven.be
+
+Abstract mobile vision systems than can operate in unconstrained
+scenarios of daily human living. Building such systems
+
+We present a mobile vision system for multi-person track- has been a far-end goal of scene understanding since the
+
+ing in busy environments. Specifically, the system integrates 1970ies, but it is also a crucial requirement for many ap-
+
+continuous visual odometry computation with tracking-by- plications in the near future of mobile robotics and smart
+
+detection in order to track pedestrians in spite of frequent vehicles. So far, however, the sheer complexity ofmany real-
+
+occlusions and egomotion of the camera rig. To achieve re- world scenes has often stymied progress in this direction.
+
+liable performance under real-world conditions, it has long In this paper, we focus on an important building block for
+been advocated to extract and combine as much visual in- mobile vision applications, namely the capability to track
+formation as possible. We propose a way to closely inte- multiple people in busy street scenes as seen from a mobile
+grate the vision modules for visual odometry, pedestrian de- observer. This could be a mobile robot, an electric wheel-
+tection, depth estimation, and tracking. The integration nat- chair, or a car passing through a crowded city center. As can
+urally leads to several cognitive feedback loops between the be seen in the above figure, such a scenario puts extreme
+modules. Among others, we propose a novel feedback con- demands on the underlying vision algorithms. Many people
+nection from the object detector to visual odometry which are walking through the system’s field of view, crossing and
+utilizes the semantic knowledge of detection to stabilize lo- occluding each other, undergoing large scale changes, and
+calization. Feedback loops always carry the danger that er- occasionally even blocking almost the entire scene.
+roneous feedback from one module is amplified and causes
+
+It has long been argued that scene analysis in such com-
+the entire system to become instable. We therefore incor-
+
+plex settings requires the combination of and careful inter-
+porate automatic failure detection and recovery, allowing
+
+play between several different vision modules. However, it
+the system to continue when a module becomes unreliable.
+
+is largely unclear how such a combination should be under-
+The approach is experimentally evaluated on several long
+
+taken and which properties are critical for its success. In this
+and difficult video sequences from busy inner-city locations.
+
+paper, we propose a specific design how to integrate visual
+Our results show that the proposed integration makes it pos-
+
+odometry, depth estimation, object detection, and tracking,
+sible to deliver stable tracking performance in scenes of
+
+and demonstrate its applicability in practice.
+previously infeasible complexity.
+
+One important component of the proposed integration is
+
+the concept of cognitive feedback. The underlying idea is
+
+1. Introduction to derive higher-level semantic information from one vision
+module and feed it back to the other modules in order to im-
+
+Computer vision has seen tremendous progress in recent prove performance there. Several instantiations of this con-
+
+years. Many individual disciplines have advanced to a state cept have been successfully demonstrated in recent years,
+
+where algorithms are becoming applicable for real-world among them the feedback from recognition to segmenta-
+
+tasks. These successes have fostered the demand for ac- tion [4, 17], from geometry estimation to object detection
+
+tual vision systems. In particular, there is a strong need for [13, 15], and the often-used feedback from tracking to de-
+
+1
+
+}
+}
+
+@Article{Hua2015,
+  Title                    = {Onboard monocular pedestrian detection by combining spatio-temporal hog with structure from motion algorithm},
+  Author                   = {Hua, Chunsheng and Makihara, Yasushi and Yagi, Yasushi and Iwasaki, Shun and Miyagawa, Keisuke and Li, Bo},
+  Journal                  = {Machine Vision and Applications},
+  Year                     = {2015},
+
+  Month                    = {Jan},
+  Number                   = {2-3},
+  Pages                    = {161–183},
+  Volume                   = {26},
+
+  Doi                      = {10.1007/s00138-014-0653-y},
+  ISSN                     = {1432-1769},
+  Publisher                = {Springer Science + Business Media},
+  Url                      = {http://dx.doi.org/10.1007/s00138-014-0653-y}
+}
+
+@Article{Keller2011,
+  Title                    = {The Benefits of Dense Stereo for Pedestrian Detection},
+  Author                   = {Keller, Christoph G. and Enzweiler, Markus and Rohrbach, Marcus and Llorca, David Fernandez and Schnorr, Christoph and Gavrila, Dariu M.},
+  Journal                  = {IEEE Transactions on Intelligent Transportation Systems},
+  Year                     = {2011},
+
+  Month                    = {Dec},
+  Number                   = {4},
+  Pages                    = {1096–1106},
+  Volume                   = {12},
+
+  Doi                      = {10.1109/tits.2011.2143410},
+  ISSN                     = {1524-9050},
+  Publisher                = {Institute of Electrical \& Electronics Engineers (IEEE)},
+  Url                      = {http://dx.doi.org/10.1109/TITS.2011.2143410}
+}
+
+@InProceedings{Pedestrian,
+  Title                    = {Dense Stereo-based ROI Generation for Pedestrian and Detection},
+  Author                   = {Keller, C. G. and Llorca, D. F. and Gavrila, D. M.},
+  Year                     = {2009},
+
+  Abstract                 = {This paper investigates the benefit of dense stereo for the
+ROI generation stage of a pedestrian detection system. Dense disparity
+maps allow an accurate estimation of the camera height, pitch angle and
+vertical road profile, which in turn enables a more precise specification
+of the areas on the ground where pedestrians are to be expected. An
+experimental comparison between sparse and dense stereo approaches is
+carried out on image data captured in complex urban environments (i.e.
+undulating roads, speed bumps). The ROI generation stage, based on
+dense stereo and specific camera and road parameter estimation, results
+in a detection performance improvement of factor five over the state-
+of-the-art based on ROI generation by sparse stereo. Interestingly, the
+added processing cost of computing dense disparity maps is at least par-
+tially amortized by the fewer ROIs that need to be processed at the
+system level.},
+  Review                   = {Dense Stereo-based ROI Generation
+
+for Pedestrian Detection
+
+C. G. Keller1, D. F. Llorca2 and D. M. Gavrila3,4
+
+1Image & Pattern Analysis Group, Department of Math.
+and Computer Science, Univ. of Heidelberg, Germany
+
+2Department of Electronics. Univ. of Alcala´. Alcala´ de Henares (Madrid), Spain
+3 Environment Perception, Group Research, Daimler AG, Ulm, Germany
+
+4Intelligent Systems Lab, Fac. of Science, Univ. of Amsterdam, The Netherlands
+
+{uni-heidelberg.keller,dariu.gavrila}@daimler.com llorca@depeca.uah.es
+
+Abstract. This paper investigates the benefit of dense stereo for the
+ROI generation stage of a pedestrian detection system. Dense disparity
+maps allow an accurate estimation of the camera height, pitch angle and
+vertical road profile, which in turn enables a more precise specification
+of the areas on the ground where pedestrians are to be expected. An
+experimental comparison between sparse and dense stereo approaches is
+carried out on image data captured in complex urban environments (i.e.
+undulating roads, speed bumps). The ROI generation stage, based on
+dense stereo and specific camera and road parameter estimation, results
+in a detection performance improvement of factor five over the state-
+of-the-art based on ROI generation by sparse stereo. Interestingly, the
+added processing cost of computing dense disparity maps is at least par-
+tially amortized by the fewer ROIs that need to be processed at the
+system level.
+
+1 Introduction
+
+Vision-based pedestrian detection is a key problem in the domain of intelligent
+vehicles (IV). Large variations in human pose and clothing, as well as vary-
+ing backgrounds and environmental conditions make this problem particularly
+challenging. The first stage in most systems consists of identifying generic ob-
+stacles as regions of interest (ROIs) using a computationally efficient method.
+Subsequently, a more expensive pattern classification step is applied.
+
+Previous IV applications have typically used sparse, feature-based stereo ap-
+proaches (e.g. [9, 1]) because of lower processing cost. However, with recent hard-
+ware advances, real-time dense stereo has become feasible [12] (here we use a
+hardware implementation of the semi-global matching (SGM) algorithm [7]).
+Both sparse and dense stereo approaches haved proved suitable to dynamically
+estimate camera height and pitch angle, in order to deal with road imperfections,
+speed bumps, car accelerations, etc. Dense stereo, furthermore, holds the poten-
+tial to also reliably estimate the vertical road profile (which feature-based stereo,
+due to its sparseness does not). The more accurate estimation of ground location
+of pedestrians can be expected to improve system performance, especially when
+considering undulating, hilly roads.
+
+}
+}
+
+@InProceedings{Wojek2008,
+  Title                    = {A Performance Evaluation of Single and Multi-feature People Detection},
+  Author                   = {Christian Wojek and Bernt Schiele},
+  Year                     = {2008},
+
+  Abstract                 = {Over the years a number of powerful people detectors have
+been proposed. While it is standard to test complete detectors on publicly
+available datasets, it is often unclear how the diﬀerent components (e.g.
+features and classiﬁers) of the respective detectors compare. Therefore,
+this paper contributes a systematic comparison of the most prominent
+and successful people detectors. Based on this evaluation we also propose
+a new detector that outperforms the state-of-art on the INRIA person
+dataset by combining multiple features.
+},
+  Review                   = {A Performance Evaluation of Single and
+Multi-feature People Detection
+
+Christian Wojek and Bernt Schiele
+
+Computer Science Department
+TU Darmstadt
+
+{wojek, schiele}@cs.tu-darmstadt.de
+
+Abstract. Over the years a number of powerful people detectors have
+been proposed. While it is standard to test complete detectors on publicly
+available datasets, it is often unclear how the diﬀerent components (e.g.
+features and classiﬁers) of the respective detectors compare. Therefore,
+this paper contributes a systematic comparison of the most prominent
+and successful people detectors. Based on this evaluation we also propose
+a new detector that outperforms the state-of-art on the INRIA person
+dataset by combining multiple features.
+
+1 Introduction
+
+People are one of the most challenging classes for object detection, mainly due
+to large variations caused by articulation and appearance. Recently, several re-
+searchers have reported impressive results [1,2,3] for this task. Broadly speaking
+there are two types of approaches. Sliding-window methods exhaustively scan
+the input images over position and scale independently classifying each sliding
+window, while other methods generate hypotheses by evidence aggregation (e.g.
+[3,4,5,6,7]). To the best of our knowledge there exist only two comparative stud-
+ies on people detection methods. [8] compares local features and interest point
+detectors and [9] compares various sliding window techniques. However, [9] is
+focused on automotive applications and their database only consists of cropped
+gray scale image windows. While the evaluation on single image windows is in-
+teresting, it does not allow to assess the detection performance in real-world
+scenes where many false positive detections may arise from body parts or at
+wrong scales. This paper therefore contributes a systematic evaluation of var-
+ious features and classiﬁers proposed for sliding-window approaches where we
+assess the performance of the diﬀerent components and the overall detectors on
+entire real-world images rather than on cropped image windows.
+
+As a complete review on people detection is beyond the scope of this work,
+we focus on most related work. An early approach [1] used Haar wavelets and
+a polynomial SVM while [10] used Haar-like wavelets and a cascade of Ada-
+Boost classiﬁers. Gavrila [11] employs a hierarchical Chamfer matching strategy
+to detect people. Recent work often employs statistics on image gradients for
+people detection. [12] uses edge orientation histograms in conjunction with SVMs
+
+G. Rigoll (Ed.): DAGM 2008, LNCS 5096, pp. 82–91, 2008.
+©c Springer-Verlag Berlin Heidelberg 2008
+
+}
+}
+

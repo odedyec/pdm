@@ -1,0 +1,339 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Real Time Pedestrian Detection and Mapping
+\end_layout
+
+\begin_layout Author
+Assaf Livne, Oded Yechiel
+\end_layout
+
+\begin_layout Date
+1/4/2015
+\end_layout
+
+\begin_layout Abstract
+Pedestrian detection is a key problem in computer vision and is a key element
+ in vision systems for autonomous vehicles.
+ For autonomous vehicles it is a very important task the main reason is
+ safety.
+ The pedestrian detection algorithms were explored widely and thoroughly
+ by a wide range of explorers.
+ Perhaps the best algorithm that can be found today in the pedestrian detection
+ community is the algorithms and open code written by Piotr Dollar, which
+ we are going to use in our work.
+ However, detecting the pedestrians is just one piece of the puzzle, and
+ the other piece is to map the pedestrian in the three dimensional world.
+ In this paper we will show our results of working with Dollar’s algorithm
+ and our implementation for detecting and mapping.
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Standard
+Autonomous vehicles and robots require a vision system and mapping capabilities.
+ Whether this vision system and mapping is performed using LiDAR, cameras,
+ or other sensors the vision and mapping is mandatory for the system to
+ operate.
+ Although LiDAR sensors are accurate robust and easy to use, they have some
+ drawbacks such as high market prices, high energy consumption and especially
+ the problem of extracting features from the points themselves.
+ Cameras, on the other hand, are very cheap and mimics the human eye in
+ the sense of getting the scenery input.
+ However, extracting meaningful data from the images is extremely complicated,
+ and 3D reconstructions of the scenery is nearly impossible without any
+ prior information.
+ It is desired to know the where about of the surrounding pedestrians for
+ obvious reasons.
+ There are numerous algorithms and methods 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Benenson2014,Detection,Dollar,Gool1970,Pedestrian"
+
+\end_inset
+
+that can detect pedestrians such as VJ, Shapelet, and ConvNet that uses
+ different types of features such as Haar, Gradients and HOG.
+ Each method has its pros and cons in the sense of computation time and
+ accuracy.
+ For the time being, Piotr Dollar’s is probably the best pedestrian detector
+ algorithm for real time application due to its fast computation and accurate
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Fastest2010"
+
+\end_inset
+
+.
+ Indeed, the algorithm suggested by Piotr Dollar does not solve the solution
+ completely, but gives only one piece of the puzzle.
+ The algorithm finds the pedestrians in a given image, but still the mapping
+ of the person into a 3D space is still an issue.
+ 
+\end_layout
+
+\begin_layout Standard
+In this project we would like to try to detect and map pedestrians in a
+ 3D space while using and improving Dollar’s algorithm.
+ The improvement is performed by using a tracking algorithm, e.g.
+ Kalman filter and using stereo algorithm for 3D projection.
+\end_layout
+
+\begin_layout Section
+Problem statement
+\end_layout
+
+\begin_layout Standard
+The pedestrian detector we are intending to implement is the algorithm published
+ by Piotr Dollar 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Fastest2010"
+
+\end_inset
+
+.
+ Dollar's algorithm (as seen in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Dollar's-algorithm"
+
+\end_inset
+
+) detect pedestrians in real time computation speed with high assurance.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/DollarDetector.png
+	scale 80
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Dollar's algorithm for pedestrian detection.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Dollar's-algorithm"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The next step, as proposed by our algorithm (see figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Proposed-algorithm"
+
+\end_inset
+
+), is to project the pedestrian which is detected by Dollar, to a 3D map.
+ This will be done using stereo vision techniques.
+ Of course, this stage needs to be researched since the number of bounding
+ boxes are not necessarily equal in both cameras, and detection is not guarantee
+d in both images.
+ In addition the bounding boxes might not be equal so a simple Histogram
+ filter will not assist in matching the pedestrians in both images.
+\end_layout
+
+\begin_layout Standard
+Assuming the mapping of the pedestrian to a 3D world map is successful the
+ next step will be to track the pedestrian on the map 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Wojek2008"
+
+\end_inset
+
+, while taking into consideration the dynamics of the cameras.
+ The dynamics of the cameras are calculated using a GPS/IMU measuring system.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/algorithm.png
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Proposed algorithm
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Proposed-algorithm"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Gaps and meanwhile accomplishments
+\end_layout
+
+\begin_layout Standard
+Till now we have managed to operate Dollar's algorithm and have started
+ to export the algorithm from Matlab environment to C/C++ environment for
+ Real-Time and better integration with the rest of the algorithms (note
+ that we may continue till the end of the semester to develop in Matlab).
+\end_layout
+
+\begin_layout Standard
+Good calibration and synchronizing of a stereo GigE camera system is in
+ our possession, and a dataset of JPEG images has already been taken to
+ work with.
+\end_layout
+
+\begin_layout Standard
+We still do not know, as mentioned, how to match the pedestrians in the
+ two images received.
+\end_layout
+
+\begin_layout Standard
+Another issue we are dealing with is how to track multiple targets using
+ a Kalman Filter estimator.
+\end_layout
+
+\begin_layout Section
+Experiments
+\end_layout
+
+\begin_layout Standard
+When we will finish the development of our algorithm we will perform a series
+ of experiment that will show our results of the pedestrian mapping as opposed
+ to the real position of the pedestrians which will be evaluated using a
+ Velodyne LiDAR system.
+\end_layout
+
+\begin_layout Section
+Conclusions
+\end_layout
+
+\begin_layout Standard
+This project has a huge impact potential and combines multiple techniques
+ and algorithms.
+ The resulted algorithm of this project is expected to be used in a real
+ time application for autonomous cars, and we hope to submit it to a journal
+ (not sure yet which one).
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "pedestrianDB"
+options "plain"
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

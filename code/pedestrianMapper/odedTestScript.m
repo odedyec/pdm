@@ -1,4 +1,4 @@
-%New Oded Script
+%New Oded Script - Pedestrian match 
 %% Load image parameters
 MAX = 1735;
 imNum = 0;

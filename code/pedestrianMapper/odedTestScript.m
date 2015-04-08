@@ -48,10 +48,10 @@ end
 % % % FramesL = read(vidL);
 % % % Il = imresize(FramesL(:,:,:,i),[480 640]); Ir = imresize(FramesR(:,:,:,i),[480 640]);
 %% Detect and match
-startFrame = 380;
-endFrame = 500;%MAX;
+startFrame = 300;
+endFrame = 405;%MAX;
 Thresh = 120;
-profile on
+% profile on
 for i=startFrame:endFrame%which frames
     nameL = sprintf('%s%04dl.jpeg',baseString,i);nameR = sprintf('%s%04dr.jpeg',baseString,i);Il = imcrop(imresize(imread(nameL),[480 640]),[0 110 530 480]);Ir = imcrop(imresize(imread(nameR),[480 640]),[0 110 530 480]);
     bbsR = acfDetect(Ir,pedDetector);IndR = find(bbsR(:,end) > Thresh);bbs1R = bbsR(IndR,:);
@@ -60,7 +60,8 @@ for i=startFrame:endFrame%which frames
 %      figure(2);imshow(Il);bbApply('draw',bbs1L);
 %      pause(1)
 
-    pedestrianMatch(Il,Ir,bbs1L,bbs1R);
+    matches = pedestrianMatch(Il,Ir,bbs1L,bbs1R,1);
+    pause(1)
     
 end
-profile viewer
+% profile viewer

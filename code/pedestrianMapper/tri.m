@@ -54,14 +54,19 @@ Ind = find(bbs(:,end) > 150); bbsL = bbs(Ind,:);
 figure(2); imshow(IL);bbApply('draw',bbsL);
 %[xL,yL]=ginput(size(bbsL,1)); close(2);
 
-matches = pedestrianMatch(IR,IL,bbsR,bbsL);
+matchesPed = pedestrianMatch(IR,IL,bbsR,bbsL);
 
 
-cropedR = imcrop(IR,bbsR(matches(1,1),1:4));
-cropedL = imcrop(IL,bbsL(matches(2,1),1:4));
+cropedR = imcrop(IR,bbsR(matchesPed(1,1),1:4));
+cropedL = imcrop(IL,bbsL(matchesPed(2,1),1:4));
 figure(3);imshow(cropedR);figure(4);imshow(cropedL);
 
+
 R=cropedR; L=cropedL;
+
+
+
+
 pedDist(cropedR,cropedL,'r',1);
 
 
@@ -96,9 +101,3 @@ pedDist(cropedR,cropedL,'r',1);
 
 
 end
-%  
-% matchedPoints1 = [x,y];
-% matchedPoints2 = [x2,y2];
-% 
-% worldPoints = triangulate(matchedPoints1,matchedPoints2,stereoParams)
-% 

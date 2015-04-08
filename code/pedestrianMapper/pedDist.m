@@ -1,4 +1,4 @@
-function longestWidth = pedDist(L,R)
+function longestWidth??? = pedDist(L,R)
 
 
 [framesL,dL] = vl_covdet(im2single(rgb2gray(L)), 'Method', 'MultiscaleHessian','EstimateAffineShape', true);

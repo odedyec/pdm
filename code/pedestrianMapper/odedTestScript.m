@@ -1,4 +1,4 @@
-%New Oded Script
+%New Oded Script - Pedestrian match 
 %% Load image parameters
 MAX = 1735;
 imNum = 0;
@@ -46,51 +46,21 @@ end
 % % % FramesR = read(vidR);
 % % % vidL = VideoReader('Left.mpg');
 % % % FramesL = read(vidL);
+% % % Il = imresize(FramesL(:,:,:,i),[480 640]); Ir = imresize(FramesR(:,:,:,i),[480 640]);
 %% Detect and match
-startFrame = 50;
-endFrame = MAX;
+startFrame = 380;
+endFrame = 500;%MAX;
 Thresh = 120;
-for i=startFrame:5:endFrame%which frames
-    nameL = sprintf('%s%04dl.jpeg',baseString,i);nameR = sprintf('%s%04dr.jpeg',baseString,i);Il = imresize(imread(nameL),[480 640]);Ir = imresize(imread(nameR),[480 640]);
-    %Il = imresize(FramesL(:,:,:,i),[480 640]); Ir = imresize(FramesR(:,:,:,i),[480 640]);
+profile on
+for i=startFrame:endFrame%which frames
+    nameL = sprintf('%s%04dl.jpeg',baseString,i);nameR = sprintf('%s%04dr.jpeg',baseString,i);Il = imcrop(imresize(imread(nameL),[480 640]),[0 110 530 480]);Ir = imcrop(imresize(imread(nameR),[480 640]),[0 110 530 480]);
     bbsR = acfDetect(Ir,pedDetector);IndR = find(bbsR(:,end) > Thresh);bbs1R = bbsR(IndR,:);
     bbsL = acfDetect(Il,pedDetector);IndL = find(bbsL(:,end) > Thresh);bbs1L = bbsL(IndL,:);
-    tic
-     figure(1);imshow(Ir);bbApply('draw',bbs1R);
-     figure(2);imshow(Il);bbApply('draw',bbs1L);
-     pause(1)
-%     pause%(0.01);
-%     if (bbsR-bbsL==0)
-%         1
-%     else
-%         0
-%     end
-    fi = 0;
-    if size(bbs1R,1) ~= size(bbs1L,1) | size(bbs1R,1) == 0; continue; end;
-    for ped=1:size(bbs1R,1)
-        P1 = (imcrop(Ir,bbs1R(ped,1:4)));
-        maxxx = [0,0];
-        for ped2=1:size(bbs1L,1)
-            P2 = (imcrop(Il,bbs1L(ped2,1:4)));
-            s = min(size(P1),size(P2));
-            P1 = imresize(P1,s(1:2));
-            P2 = imresize(P2,s(1:2));
-            val = psnr(P1,P2);
-            if val > maxxx(1)
-                maxxx = [val,ped2];
-            end
-        end
-        figure(fi+1);imshow(P1);figure(2+fi);imshow(imcrop(Il,bbs1L(maxxx(2),1:4)));
-        pause(2)
-        %fi = fi + 2;
-        
-    end
-    %pedestrianMatch(Il,Ir,bbs1R,bbs1L)
-    
-    toc
-    %figure(1);im(Ir);bbApply('draw',bbs1R);
-    %figure(2);im(Il);bbApply('draw',bbs1L);
-    %pause%(0.01);
+%      figure(1);imshow(Ir);bbApply('draw',bbs1R);
+%      figure(2);imshow(Il);bbApply('draw',bbs1L);
+%      pause(1)
 
+    pedestrianMatch(Il,Ir,bbs1L,bbs1R);
     
 end
+profile viewer

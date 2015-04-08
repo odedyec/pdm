@@ -1,5 +1,5 @@
-function  printFeaturs(im1,im2,matches,f1,f2,color)
-figure();
+function  printFeaturs(im1,im2,matches,f1,f2,color,numOfFigure)
+figure(numOfFigure);
 if size(size(im1),2) == 3
     im1 = im2uint8(rgb2gray(im1));
 end

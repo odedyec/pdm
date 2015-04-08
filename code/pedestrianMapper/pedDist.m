@@ -1,4 +1,4 @@
-function longestWidth??? = pedDist(L,R)
+function [massL,massR] = pedDist(L,R)
 
 
 [framesL,dL] = vl_covdet(im2single(rgb2gray(L)), 'Method', 'MultiscaleHessian','EstimateAffineShape', true);
@@ -21,11 +21,8 @@ function longestWidth??? = pedDist(L,R)
 [matches,scores] = scoreFilter(matches,scores,framesL,framesR);
 [matches,scores] = slopeFilter(matches,scores,framesL,framesR,longestHeight);
 
-
-
-%%returning the pixels
-
-
+massL = [mean(framesL(1,matches(1,:))) , mean(framesL(2,matches(1,:)))];
+massR = [mean(framesR(1,matches(2,:))) , mean(framesR(2,matches(2,:)))];
 
 
 

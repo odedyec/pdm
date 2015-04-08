@@ -1,7 +1,7 @@
 function [matches,scores] = scoreFilter(matches,scores,framesL,framesR)
 M=size(matches,2);
 j=1;
-while j~=M
+while j>=M
     Ind = find(matches(2,:) == matches(2,j));
     if size(Ind,2) == 1
         j=j+1; continue

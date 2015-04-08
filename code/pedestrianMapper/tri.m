@@ -35,15 +35,13 @@ cd(fileparts(which('acfDemoCal.m'))); dataDir='../../data/Caltech/';
     pModify=struct('cascThr',-1,'cascCal',.025);
     pedDetector=acfModify(pedDetector,pModify); 
 
-cd('C:\Users\owner\Documents\MATLAB');
+cd('C:\Users\owner\Documents\GitHub\pdm\code');
 %% Run Shit
 
-
 for i=90:1736  
-
-PicName = sprintf('pictures/take2/%04dl.jpeg',i);
+PicName = sprintf('C:\\Users\\owner\\Documents\\MATLAB\\pictures\\take2\\%04dl.jpeg',i);
 IL = imread(PicName); IL = imresize(IL,[480 640]);
-PicName(20)='r';
+PicName(52)='r';
 IR = imread(PicName); IR = imresize(IR,[480 640]);
 
 bbs=acfDetect(IR,pedDetector);
@@ -60,9 +58,10 @@ matches = pedestrianMatch(IR,IL,bbsR,bbsL);
 
 
 cropedR = imcrop(IR,bbsR(matches(1,1),1:4));
-cropedL = imcrop(IL,bbsL(matches(1,2),1:4));
+cropedL = imcrop(IL,bbsL(matches(2,1),1:4));
 figure(3);imshow(cropedR);figure(4);imshow(cropedL);
 
+R=cropedR; L=cropedL;
 pedDist(cropedR,cropedL,'r',1);
 
 

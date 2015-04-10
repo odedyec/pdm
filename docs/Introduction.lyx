@@ -1,0 +1,117 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Standard
+Autonomous vehicles and robots require a vision system and mapping capabilities.
+ Whether this vision system and mapping is performed using LiDAR, cameras,
+ or other sensors the vision and mapping is mandatory for the system to
+ operate.
+ Although LiDAR sensors are accurate robust and easy to use, they have some
+ drawbacks such as high market prices, high energy consumption and especially
+ the problem of extracting features from the points themselves.
+ Cameras, on the other hand, are very cheap and mimics the human eye in
+ the sense of getting the scenery input.
+ However, extracting meaningful data from the images is extremely complicated,
+ and 3D reconstructions of the scenery is nearly impossible without any
+ prior information.
+ It is desired to know the where about of the surrounding pedestrians for
+ obvious reasons.
+ There are numerous algorithms and methods 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Benenson2014,Detection,Dollar,Gool1970,Pedestrian"
+
+\end_inset
+
+that can detect pedestrians such as VJ, Shapelet, and ConvNet that uses
+ different types of features such as Haar, Gradients and HOG.
+ Each method has its pros and cons in the sense of computation time and
+ accuracy.
+ For the time being, Piotr Dollar’s is probably the best pedestrian detector
+ algorithm for real time application due to its fast computation and accurate
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Fastest2010"
+
+\end_inset
+
+.
+ Indeed, the algorithm suggested by Piotr Dollar does not solve the solution
+ completely, but gives only one piece of the puzzle.
+ The algorithm finds the pedestrians in a given image, but still the mapping
+ of the person into a 3D space is still an issue.
+ 
+\end_layout
+
+\begin_layout Standard
+In this project we would like to try to detect and map pedestrians in a
+ 3D space while using and improving Dollar’s algorithm.
+ The improvement is performed by using a tracking algorithm, e.g.
+ Kalman filter and using stereo algorithm for 3D projection.
+\end_layout
+
+\end_body
+\end_document

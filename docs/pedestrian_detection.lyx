@@ -71,74 +71,25 @@ Assaf Livne, Oded Yechiel
 1/4/2015
 \end_layout
 
-\begin_layout Abstract
-Pedestrian detection is a key problem in computer vision and is a key element
- in vision systems for autonomous vehicles.
- For autonomous vehicles it is a very important task the main reason is
- safety.
- The pedestrian detection algorithms were explored widely and thoroughly
- by a wide range of explorers.
- Perhaps the best algorithm that can be found today in the pedestrian detection
- community is the algorithms and open code written by Piotr Dollar, which
- we are going to use in our work.
- However, detecting the pedestrians is just one piece of the puzzle, and
- the other piece is to map the pedestrian in the three dimensional world.
- In this paper we will show our results of working with Dollar’s algorithm
- and our implementation for detecting and mapping.
-\end_layout
-
-\begin_layout Section
-Introduction
-\end_layout
-
 \begin_layout Standard
-Autonomous vehicles and robots require a vision system and mapping capabilities.
- Whether this vision system and mapping is performed using LiDAR, cameras,
- or other sensors the vision and mapping is mandatory for the system to
- operate.
- Although LiDAR sensors are accurate robust and easy to use, they have some
- drawbacks such as high market prices, high energy consumption and especially
- the problem of extracting features from the points themselves.
- Cameras, on the other hand, are very cheap and mimics the human eye in
- the sense of getting the scenery input.
- However, extracting meaningful data from the images is extremely complicated,
- and 3D reconstructions of the scenery is nearly impossible without any
- prior information.
- It is desired to know the where about of the surrounding pedestrians for
- obvious reasons.
- There are numerous algorithms and methods 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Benenson2014,Detection,Dollar,Gool1970,Pedestrian"
+\begin_inset CommandInset include
+LatexCommand input
+preview true
+filename "Abstract.lyx"
 
 \end_inset
 
-that can detect pedestrians such as VJ, Shapelet, and ConvNet that uses
- different types of features such as Haar, Gradients and HOG.
- Each method has its pros and cons in the sense of computation time and
- accuracy.
- For the time being, Piotr Dollar’s is probably the best pedestrian detector
- algorithm for real time application due to its fast computation and accurate
- 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Fastest2010"
 
-\end_inset
-
-.
- Indeed, the algorithm suggested by Piotr Dollar does not solve the solution
- completely, but gives only one piece of the puzzle.
- The algorithm finds the pedestrians in a given image, but still the mapping
- of the person into a 3D space is still an issue.
- 
 \end_layout
 
 \begin_layout Standard
-In this project we would like to try to detect and map pedestrians in a
- 3D space while using and improving Dollar’s algorithm.
- The improvement is performed by using a tracking algorithm, e.g.
- Kalman filter and using stereo algorithm for 3D projection.
+\begin_inset CommandInset include
+LatexCommand input
+filename "Introduction.lyx"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
